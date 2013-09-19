@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html data-ng-model="">
+<html ng-app="">
 <head>
-    <title>This is an angularJS practice file</title>
+    <script src="list.js"></script>
+    <title>LASP people list</title>
 </head>
 <body>
-<div>
-    Name:
-    <br/>
-    <input type="text" data-ng-model="name"/> {{ name }}
-    <script src="angular.min.js"></script>
+<div ng-controller="ListCtl">
+    <h2>Below is a sparql generated list of LASP members</h2>
+    <div class="container">
+        <br/>
+        <em>Please type in a name to search:</em>
+        <input type="text" data-ng-model="name"/>
+        <br/>
+        <ul>
+            <li data-ng-repeat="member in myList | filter:name">
+                {{ member.person.value}} -- <a href="{{ member.personuri.value }}"> webpage </a>
+            </li>
+        </ul>
+    </div>
 </div>
+<script src="angular.min.js"></script>
 </body>
 </html>
